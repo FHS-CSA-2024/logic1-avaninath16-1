@@ -84,12 +84,13 @@ public class Logic1
     old35(10) --> true
     old35(15) --> false */
     public boolean old35(int n) {
-        if (n%3 == n%5){
-            return true;
-        }
-        return false;
     
+    if (n % 3 == 0 && n % 5 == 0) {
+        return false; // divisible by both 3 and 5
     }
+    return (n % 3 == 0 || n % 5 == 0);
+    
+}
 
 
     /*We'll say a number is special if it is a multiple of 11 or if it is one more than a multiple of 11. 
@@ -130,11 +131,12 @@ public class Logic1
     less20(59) --> true
     less20(20) --> false */
     public boolean less20(int n) {
-        if (n%20==-2 || n%20== -1){
-            return true;
-        }
-        return false;
+         if (n % 20 == 18 || n % 20 == 19) {
+        return true;
     }
+    return false;
+}
+    
 
     /*Given a non-negative number "num", return true if num is within 2 of a multiple of 10. 
     Note: (a % b) is the remainder of dividing a by b, so (7 % 5) is 2.
@@ -144,7 +146,7 @@ public class Logic1
     nearTen(17) --> false
     nearTen(19) --> true */
     public boolean nearTen(int num) {
-        if (num % 10 ==2 || num%5==2 || num%2==2){
+        if (num % 10 ==1 || num%10==2 || (num%10==8) || (num%10==9)){
             return true;
         }
       return false;
@@ -249,15 +251,18 @@ public class Logic1
     answerCell(false, false, true) --> false
     answerCell(true, false, false) --> false */
     public boolean answerCell(boolean isMorning, boolean isMom, boolean isAsleep) {
-        if (isMorning == true && isMom == true && isAsleep == false) {
-            return true;
+
+        if (isAsleep==true) {
+        return false;  // If you're asleep, you don't answer
         }
-        else if ((isAsleep == true || isMorning == true) && !isMom){
-            return false;
+    
+        if (isMorning == true && !isMom) {
+        return false;  // If it's morning and not your mom, don't answer
         }
-        return false;
+    
+        return true;
       
-    }
+        }
 
     /*Given a day of the week encoded as 0=Sun, 1=Mon, 2=Tue, ...6=Sat, 
         and a boolean indicating if we are on vacation, 
@@ -298,14 +303,16 @@ public class Logic1
     teaParty(3, 8) --> 0
     teaParty(20, 6) --> 2 */
     public int teaParty(int tea, int candy) {
-        if (tea >= 5 && candy >= 5) {
-            return 1;
-        }
-        else if (tea >= 2*candy || candy >= 2*tea){
-            return 2;
-        }
+     if (tea < 5 || candy < 5) {
         return 0;
     }
+
+    if (tea >= 2 * candy || candy >= 2 * tea) {
+        return 2;
+    }
+
+    return 1;
+}
 
 
     /*You have a red lottery ticket showing ints a, b, and c, each of which is 0, 1, or 2. 
@@ -369,7 +376,7 @@ public class Logic1
     squirrelPlay(95, false) --> false
     squirrelPlay(95, true) --> true    */
     public boolean squirrelPlay(int temp, boolean isSummer) {
-        while (temp >= 60 && temp <= 90){
+      
         if ((isSummer) && (temp >= 60 && temp <= 100)) {
             return true;
         }
@@ -379,7 +386,7 @@ public class Logic1
         else if ((!isSummer) && (temp > 90)) {
             return false;
         }
-    }
+    
     return false;
 }
 
